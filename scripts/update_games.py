@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Stáhne zápasy HC Rytíři Vlašim (ročníky 2019, 2018, 2017) ze zapasy.ceskyhokej.cz
 a uloží je do games.json, který čte mapa (index.html). Jen standardní knihovna Pythonu."""
-import json, re, sys, time, difflib, unicodedata, urllib.request
+import json, re, sys, time, difflib, unicodedata, urllib.request, http.cookiejar
 from html.parser import HTMLParser
 from datetime import datetime, timezone
 from pathlib import Path
@@ -46,23 +46,38 @@ class RowParser(HTMLParser):
     def handle_data(self, d):
         if self.cell is not None: self.cell.append(d)
 
-def fetch(u):
-    req = urllib.request.Request(u, headers={"User-Agent": "hokej-mapa updater (GitHub Actions)"})
+OPENER = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+
+def fetch(u, ajax=False):
+    h = {"User-Agent": "hokej-mapa updater (GitHub Actions)"}
+    if ajax: h["X-Requested-With"] = "XMLHttpRequest"
+    req = urllib.request.Request(u, headers=h)
     for attempt in range(3):
         try:
-            with urllib.request.urlopen(req, timeout=60) as r:
+            with OPENER.open(req, timeout=60) as r:
                 return r.read().decode("utf-8", "replace")
-        except Exception as e:
+        except Exception:
             if attempt == 2: raise
             time.sleep(5)
 
+def parse(html):
+    p = RowParser(); p.feed(html); return p.rows
+
 def fetch_rows(league):
-    rows, start = [], 0
-    while start < 600:
-        p = RowParser(); p.feed(fetch(url(league, start)))
-        rows += p.rows
-        if len(p.rows) < 30: break
-        start += 30
+    """První stránka normálně, další přes AJAX „Načíst další“ (server si pamatuje filtr v session)."""
+    rows = parse(fetch(url(league)))
+    seen = {r[7] for r in rows}
+    start = 30
+    while len(rows) >= start and start < 600:
+        txt = fetch(url(league, start), ajax=True)
+        try:
+            snip = json.loads(txt).get("snippets", {}).get("snippet--matchesSnippet", "")
+            new = parse('<tbody id="snippet--matchesSnippet">' + snip + "</tbody>")
+        except ValueError:
+            new = parse(txt)
+        new = [r for r in new if r[7] not in seen]
+        if not new: break
+        seen |= {r[7] for r in new}; rows += new; start += 30
     return rows
 
 def norm(s):
