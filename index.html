@@ -1669,7 +1669,8 @@ function popup(c){
     h+=`<div class="sec"><b class="h">Kontakty klubu</b>`+c.c.map(p=>person(p.n,p.r,p.t,p.e)).join('')+`</div>`;
   }
   if(c.geo&&c.geo!=='zdroj') h+=`<div class="role" style="font-size:12px">Poloha dohledána ${{obec:'jen podle obce',adresa:'podle adresy',osm:'jako nejbližší kluziště v obci (OpenStreetMap)'}[c.geo]}.</div>`;
-  h+=`<div class="sec">${c.d?'':'<!--'}<a href="${esc(c.d)}" target="_blank" rel="noopener">${{cz:'Detail na pojdhrathokej.cz',sk:'Detail na hockeyslovakia.sk',at:'Zdroj dat',de:'Zdroj dat'}[c.cc]}</a>${c.d?'':'-->'}</div></div>`;
+  if(c.cc!=='cz') h+=`<div class="sec">${c.d?'':'<!--'}<a href="${esc(c.d)}" target="_blank" rel="noopener">${{cz:'Detail na pojdhrathokej.cz',sk:'Detail na hockeyslovakia.sk',at:'Zdroj dat',de:'Zdroj dat'}[c.cc]}</a>${c.d?'':'-->'}</div>`;
+  h+=`</div>`;
   return h;
 }
 const markers={};
