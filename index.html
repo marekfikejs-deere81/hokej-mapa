@@ -681,10 +681,14 @@ html,body{height:100%;margin:0}
 body{font:15px/1.45 var(--body);color:var(--ink);background:var(--ice);display:flex}
 #panel{width:340px;flex:0 0 340px;height:100%;overflow-y:auto;background:var(--panel);border-right:1px solid var(--line);
   padding:18px max(16px,env(safe-area-inset-left,0px)) 18px 18px;display:flex;flex-direction:column;gap:16px;z-index:2}
-#mapwrap{flex:1;height:100%;display:flex;flex-direction:column;min-width:0}
+#mapwrap{flex:1;height:100%;display:flex;flex-direction:column;min-width:0;position:relative}
+.qfloat{position:absolute;top:10px;left:56px;right:12px;max-width:380px;z-index:1000}
+.qfloat input[type=search]{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.18);border-color:#c9d3dc}
+.qfloat #results{background:#fff;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.18);max-height:50vh;overflow-y:auto}
+.qfloat #results:empty{display:none}
 #map{flex:1;min-height:0}
 .mapbar{flex:0 0 auto;padding:8px max(12px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) 12px;background:var(--panel);border-top:1px solid var(--line);display:flex;justify-content:flex-end}
-.qwrap{position:relative;margin-top:10px}
+.qwrap{position:relative}
 .qwrap input{padding-right:34px}
 .qwrap input::-webkit-search-cancel-button{display:none}
 .qclr{all:unset;position:absolute;right:6px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px;font-size:18px;color:var(--muted);cursor:pointer}
@@ -747,7 +751,7 @@ h2{font:700 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;
   h1{font-size:22px}
   .foot{display:none}
   #panel{gap:10px}
-  .ctry{margin-top:6px} .yrs{margin-top:6px} .qwrap{margin-top:8px}
+  .ctry{margin-top:6px} .yrs{margin-top:6px}
   .sub{display:none} .oppinfo{margin-top:4px;font-size:12px}
   #mapwrap{height:auto;min-height:0}
   .mapbar{justify-content:stretch} .mapbar .xbtn{width:100%}
@@ -760,8 +764,6 @@ h2{font:700 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;
     <h1>Hokejové kluby</h1>
     <div class="ctry" id="ctry">Vyber:</div>
     <div class="yrs" id="yrs">Ročník:</div>
-    <div class="qwrap"><input type="search" id="q" placeholder="Hledat klub nebo město…" autocomplete="off"><button type="button" class="qclr" id="qclr" aria-label="Smazat hledání" hidden>×</button></div>
-    <ul id="results"></ul>
     <p class="oppinfo"><span class="dot opp"></span><span id="oppinfo"></span></p>
     <p class="sub" id="sub"></p>
   </div>
@@ -773,7 +775,7 @@ h2{font:700 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;
   </div>
   <p class="foot">Zdroj: pojdhrathokej.cz, hockeyslovakia.sk, svazy AT a DE (rešerše), weby klubů, zapasy.ceskyhokej.cz (zápasy se aktualizují denně). Dojezd: OSRM (OpenStreetMap), bez dopravy. Stav 2. 11. 2026. Mapa © přispěvatelé OpenStreetMap.</p>
 </aside>
-<div id="mapwrap"><div id="map"></div><div class="mapbar"><button class="xbtn" id="xls" type="button">Export zobrazených klubů do Excelu</button></div></div>
+<div id="mapwrap"><div class="qfloat"><div class="qwrap"><input type="search" id="q" placeholder="Hledat klub nebo město…" autocomplete="off"><button type="button" class="qclr" id="qclr" aria-label="Smazat hledání" hidden>×</button></div><ul id="results"></ul></div><div id="map"></div><div class="mapbar"><button class="xbtn" id="xls" type="button">Export zobrazených klubů do Excelu</button></div></div>
 <script>/* @preserve
  * Leaflet 1.9.4, a JS library for interactive maps. https://leafletjs.com
  * (c) 2010-2023 Vladimir Agafonkin, (c) 2010-2011 CloudMade
@@ -1741,7 +1743,7 @@ q.addEventListener('input',()=>{const v=norm(q.value.trim());
   if(v.length<2){res.innerHTML='';return}
   const hit=CLUBS.filter(c=>inCtry(c)&&norm(c.n+' '+c.a).includes(v)).slice(0,8);
   res.innerHTML=hit.map(c=>`<li class="opplist"><button data-id="${c.id}"><span class="nm">${esc(c.n)}</span><span class="nx">${esc(c.a.split(', ').pop())}</span></button></li>`).join('')||'<li class="role" style="padding:6px 8px;color:var(--muted)">Nic nenalezeno</li>';});
-res.addEventListener('click',e=>{const b=e.target.closest('button');if(b){go(b.dataset.id);}});
+res.addEventListener('click',e=>{const b=e.target.closest('button');if(b){res.innerHTML='';q.blur();go(b.dataset.id);}});
 const qclr=document.getElementById('qclr');
 q.addEventListener('input',()=>{qclr.hidden=!q.value});
 qclr.addEventListener('click',()=>{q.value='';qclr.hidden=true;res.innerHTML='';q.focus()});
