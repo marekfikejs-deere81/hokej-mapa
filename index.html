@@ -713,6 +713,8 @@ h2{font:700 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;
 .yr[aria-pressed=true]{background:var(--opp);border-color:var(--opp);color:#fff}
 .yr:focus-visible{outline:2px solid var(--other);outline-offset:1px}
 .oppinfo{font-size:13px;color:var(--muted);margin:6px 0 0;display:flex;align-items:center;gap:7px}
+.xbtn{all:unset;box-sizing:border-box;cursor:pointer;margin-top:10px;width:100%;text-align:center;font:600 14px/1 var(--body);padding:10px 12px;border-radius:6px;background:var(--own);color:#fff}
+.xbtn:hover{filter:brightness(1.15)} .xbtn:focus-visible{outline:2px solid var(--other);outline-offset:2px} .xbtn[disabled]{opacity:.6;cursor:wait}
 .foot{margin-top:auto;font-size:12px;color:var(--muted)}
 #results{list-style:none;margin:0;padding:0;display:grid;gap:2px}
 /* popup */
@@ -757,6 +759,7 @@ h2{font:700 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;
   <div>
     <input type="search" id="q" placeholder="Hledat klub nebo město…" autocomplete="off">
     <ul id="results"></ul>
+    <button class="xbtn" id="xls" type="button">Export zobrazených klubů do Excelu</button>
   </div>
   <p class="foot">Zdroj: pojdhrathokej.cz, hockeyslovakia.sk, svazy AT a DE (rešerše), weby klubů, zapasy.ceskyhokej.cz (zápasy se aktualizují denně). Dojezd: OSRM (OpenStreetMap), bez dopravy. Stav 2. 11. 2026. Mapa © přispěvatelé OpenStreetMap.</p>
 </aside>
@@ -1628,18 +1631,17 @@ const COUNTRIES=[
  {cc:'at',name:'Rakousko',flag:'<svg viewBox="0 0 9 6"><rect width="9" height="6" fill="#c8102e"/><rect y="2" width="9" height="2" fill="#fff"/></svg>'},
  {cc:'de',name:'Německo',flag:'<svg viewBox="0 0 5 3"><rect width="5" height="3" fill="#ffce00"/><rect width="5" height="2" fill="#dd0000"/><rect width="5" height="1" fill="#000"/></svg>'}
 ].filter(c=>CLUBS.some(x=>x.cc===c.cc));
-let sel;try{sel=new Set(JSON.parse(localStorage.getItem('zeme'))||['cz'])}catch(e){sel=new Set(['cz'])}
-sel=new Set([...sel].filter(c=>COUNTRIES.some(x=>x.cc===c)));if(!sel.size)sel.add('cz');
+let sel=new Set(['cz']); // výchozí: jen Česko (při každém načtení)
 const ctry=document.getElementById('ctry');
 COUNTRIES.forEach(c=>{const b=document.createElement('button');b.type='button';b.className='flag';b.title=c.name;b.setAttribute('aria-label',c.name);b.dataset.cc=c.cc;b.innerHTML=c.flag;
   b.addEventListener('click',()=>{if(sel.has(c.cc)){if(sel.size===1)return;sel.delete(c.cc)}else sel.add(c.cc);
-    try{localStorage.setItem('zeme',JSON.stringify([...sel]))}catch(e){}update(true)});ctry.appendChild(b)});
+    update(true)});ctry.appendChild(b)});
 // ročník
 const YEARS=['2019','2018','2017'];
-let year;try{year=localStorage.getItem('rocnik')}catch(e){}if(!YEARS.includes(year))year='2017';
+let year='2017'; // výchozí ročník při každém načtení
 const yrs=document.getElementById('yrs');
 YEARS.forEach(y=>{const b=document.createElement('button');b.type='button';b.className='yr';b.textContent=y;b.dataset.y=y;
-  b.addEventListener('click',()=>{year=y;try{localStorage.setItem('rocnik',y)}catch(e){}applyYear()});yrs.appendChild(b)});
+  b.addEventListener('click',()=>{year=y;applyYear()});yrs.appendChild(b)});
 let OPP={};
 function applyYear(){
   yrs.querySelectorAll('.yr').forEach(b=>b.setAttribute('aria-pressed',b.dataset.y===year));
@@ -1688,7 +1690,6 @@ function go(id){const c=CLUBS.find(x=>x.id===id);
 const rMin=document.getElementById('r-min'),rKm=document.getElementById('r-km');
 let MAXMIN=+rMin.max,MAXKM=+rKm.max;
 let wantMin=9999,wantKm=9999;
-try{const v=JSON.parse(localStorage.getItem('dojezd2'));if(v){wantMin=+v[0]||9999;wantKm=+v[1]||9999}}catch(e){}
 function setRanges(){
   const vis=CLUBS.filter(c=>inCtry(c)&&c.typ!=='own');
   MAXMIN=Math.max(60,Math.ceil(Math.max(...vis.map(c=>c.min))/30)*30);
@@ -1712,7 +1713,7 @@ function applyFilter(){
   document.getElementById('o-n').textContent=n;
 }
 function saveRange(){wantMin=+rMin.value>=MAXMIN?9999:+rMin.value;wantKm=+rKm.value>=MAXKM?9999:+rKm.value;
-  try{localStorage.setItem('dojezd2',JSON.stringify([wantMin,wantKm]))}catch(e){}}
+}
 function update(fit){
   ctry.querySelectorAll('.flag').forEach(b=>b.setAttribute('aria-pressed',sel.has(b.dataset.cc)));
   const per=COUNTRIES.filter(c=>sel.has(c.cc)).map(c=>`${c.name} ${CLUBS.filter(x=>x.cc===c.cc).length}`).join(' · ');
@@ -1732,6 +1733,25 @@ q.addEventListener('input',()=>{const v=norm(q.value.trim());
   res.innerHTML=hit.map(c=>`<li class="opplist"><button data-id="${c.id}"><span class="nm">${esc(c.n)}</span><span class="nx">${esc(c.a.split(', ').pop())}</span></button></li>`).join('')||'<li class="role" style="padding:6px 8px;color:var(--muted)">Nic nenalezeno</li>';});
 res.addEventListener('click',e=>{const b=e.target.closest('button');if(b){go(b.dataset.id);}});
 update(true);applyYear();
+// export do Excelu – kluby aktuálně zobrazené (vybrané země + filtr dojezdu)
+function visibleClubs(){const tm=+rMin.value,tk=+rKm.value;
+  return CLUBS.filter(c=>shown(c)&&(c.typ==='own'||((tm>=MAXMIN||c.min<=tm)&&(tk>=MAXKM||c.km<=tk))))
+    .sort((a,b)=>(a.typ==='own'?-1:b.typ==='own'?1:0)||(a.min-b.min))}
+function loadXLSX(){return window.XLSX?Promise.resolve():new Promise((ok,ko)=>{const s=document.createElement('script');s.src='vendor/xlsx.full.min.js';s.onload=ok;s.onerror=ko;document.head.appendChild(s)})}
+const CN={cz:'Česko',sk:'Slovensko',at:'Rakousko',de:'Německo'};
+document.getElementById('xls').addEventListener('click',async e=>{const b=e.currentTarget;b.disabled=true;const lbl=b.textContent;b.textContent='Připravuji…';
+  try{await loadXLSX();
+    const rows=visibleClubs().map(c=>{const p=c.c||[];const gs=OPP[c.id]||[];const r={'Země':CN[c.cc]||c.cc,'Název klubu':c.n,'Oficiální název':c.off||'','Kraj / region':c.k,'Adresa':c.a,'Web':c.w||'',
+      [`Soupeř ročníku ${year}`]:c.typ==='own'?'náš klub':(gs.length?'ano':''),
+      'Dojezd z Vlašimi (min)':c.typ==='own'?0:c.min,'Dojezd z Vlašimi (km)':c.typ==='own'?0:c.km,'GPS šířka':c.lat,'GPS délka':c.lng};
+      [0,1].forEach(i=>{const x=p[i]||{};r[`Kontakt ${i+1}`]=x.n||'';r[`Funkce ${i+1}`]=x.r||'';r[`Telefon ${i+1}`]=x.t||'';r[`E-mail ${i+1}`]=x.e||''});
+      r[`Zápasy s Vlašimí (ročník ${year})`]=gs.map(g=>`${g.d} ${g.ha==='doma'?'Vlašim doma':'Vlašim venku'}${g.x?' ('+g.x+')':''}`).join('; ');
+      return r});
+    const ws=XLSX.utils.json_to_sheet(rows);ws['!cols']=Object.keys(rows[0]||{}).map(k=>({wch:Math.min(45,Math.max(10,k.length+2,...rows.map(r=>String(r[k]??'').length)))}));
+    ws['!autofilter']={ref:ws['!ref']};
+    const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Kluby');
+    const d=new Date();XLSX.writeFile(wb,`Hokejove_kluby_${[...sel].join('-')}_${year}_${d.toISOString().slice(0,10)}.xlsx`);
+  b.disabled=false;b.textContent=lbl}catch(err){b.disabled=false;b.textContent='Export se nepodařil – zkus to znovu'}});
 // čerstvá data zápasů (aktualizuje je denně GitHub Action)
 fetch('games.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.years){GAMES=j;applyYear()}}).catch(()=>{});
 </script>
