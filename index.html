@@ -681,7 +681,15 @@ html,body{height:100%;margin:0}
 body{font:15px/1.45 var(--body);color:var(--ink);background:var(--ice);display:flex}
 #panel{width:340px;flex:0 0 340px;height:100%;overflow-y:auto;background:var(--panel);border-right:1px solid var(--line);
   padding:18px max(16px,env(safe-area-inset-left,0px)) 18px 18px;display:flex;flex-direction:column;gap:16px;z-index:2}
-#map{flex:1;height:100%}
+#mapwrap{flex:1;height:100%;display:flex;flex-direction:column;min-width:0}
+#map{flex:1;min-height:0}
+.mapbar{flex:0 0 auto;padding:8px max(12px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) 12px;background:var(--panel);border-top:1px solid var(--line);display:flex;justify-content:flex-end}
+.qwrap{position:relative;margin-top:10px}
+.qwrap input{padding-right:34px}
+.qwrap input::-webkit-search-cancel-button{display:none}
+.qclr{all:unset;position:absolute;right:6px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px;font-size:18px;color:var(--muted);cursor:pointer}
+.qclr:hover{background:var(--line);color:var(--ink)} .qclr:focus-visible{outline:2px solid var(--other)}
+#results{margin-top:4px}
 h1{font:700 30px/1 var(--display);letter-spacing:.01em;margin:0;text-transform:uppercase}
 .sub{color:var(--muted);margin:4px 0 0;font-size:14px}
 .legend{display:grid;gap:7px;font-size:14px}
@@ -713,7 +721,7 @@ h2{font:700 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;
 .yr[aria-pressed=true]{background:var(--opp);border-color:var(--opp);color:#fff}
 .yr:focus-visible{outline:2px solid var(--other);outline-offset:1px}
 .oppinfo{font-size:13px;color:var(--muted);margin:6px 0 0;display:flex;align-items:center;gap:7px}
-.xbtn{all:unset;box-sizing:border-box;cursor:pointer;margin-top:10px;width:100%;text-align:center;font:600 14px/1 var(--body);padding:10px 12px;border-radius:6px;background:var(--own);color:#fff}
+.xbtn{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;font:600 14px/1 var(--body);padding:10px 12px;border-radius:6px;background:var(--own);color:#fff}
 .xbtn:hover{filter:brightness(1.15)} .xbtn:focus-visible{outline:2px solid var(--other);outline-offset:2px} .xbtn[disabled]{opacity:.6;cursor:wait}
 .foot{margin-top:auto;font-size:12px;color:var(--muted)}
 #results{list-style:none;margin:0;padding:0;display:grid;gap:2px}
@@ -736,8 +744,13 @@ h2{font:700 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;
   body{flex-direction:column}
   #panel{width:100%;flex:0 0 auto;max-height:42%;border-right:0;border-bottom:1px solid var(--line);
     padding:12px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
-  h1{font-size:24px}
+  h1{font-size:22px}
   .foot{display:none}
+  #panel{gap:10px}
+  .ctry{margin-top:6px} .yrs{margin-top:6px} .qwrap{margin-top:8px}
+  .sub{display:none} .oppinfo{margin-top:4px;font-size:12px}
+  #mapwrap{height:auto;min-height:0}
+  .mapbar{justify-content:stretch} .mapbar .xbtn{width:100%}
 }
 </style>
 </head>
@@ -747,6 +760,8 @@ h2{font:700 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;
     <h1>Hokejové kluby</h1>
     <div class="ctry" id="ctry">Vyber:</div>
     <div class="yrs" id="yrs">Ročník:</div>
+    <div class="qwrap"><input type="search" id="q" placeholder="Hledat klub nebo město…" autocomplete="off"><button type="button" class="qclr" id="qclr" aria-label="Smazat hledání" hidden>×</button></div>
+    <ul id="results"></ul>
     <p class="oppinfo"><span class="dot opp"></span><span id="oppinfo"></span></p>
     <p class="sub" id="sub"></p>
   </div>
@@ -756,14 +771,9 @@ h2{font:700 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;
     <div class="rg"><label for="r-km">Vzdálenost do <output id="o-km"></output></label><input type="range" id="r-km" min="10" max="360" step="5"></div>
     <div class="reach">V dosahu: <b id="o-n"></b> klubů · <button class="reset" id="r-reset" type="button">zrušit filtr</button></div>
   </div>
-  <div>
-    <input type="search" id="q" placeholder="Hledat klub nebo město…" autocomplete="off">
-    <ul id="results"></ul>
-    <button class="xbtn" id="xls" type="button">Export zobrazených klubů do Excelu</button>
-  </div>
   <p class="foot">Zdroj: pojdhrathokej.cz, hockeyslovakia.sk, svazy AT a DE (rešerše), weby klubů, zapasy.ceskyhokej.cz (zápasy se aktualizují denně). Dojezd: OSRM (OpenStreetMap), bez dopravy. Stav 2. 11. 2026. Mapa © přispěvatelé OpenStreetMap.</p>
 </aside>
-<div id="map"></div>
+<div id="mapwrap"><div id="map"></div><div class="mapbar"><button class="xbtn" id="xls" type="button">Export zobrazených klubů do Excelu</button></div></div>
 <script>/* @preserve
  * Leaflet 1.9.4, a JS library for interactive maps. https://leafletjs.com
  * (c) 2010-2023 Vladimir Agafonkin, (c) 2010-2011 CloudMade
@@ -1732,6 +1742,9 @@ q.addEventListener('input',()=>{const v=norm(q.value.trim());
   const hit=CLUBS.filter(c=>inCtry(c)&&norm(c.n+' '+c.a).includes(v)).slice(0,8);
   res.innerHTML=hit.map(c=>`<li class="opplist"><button data-id="${c.id}"><span class="nm">${esc(c.n)}</span><span class="nx">${esc(c.a.split(', ').pop())}</span></button></li>`).join('')||'<li class="role" style="padding:6px 8px;color:var(--muted)">Nic nenalezeno</li>';});
 res.addEventListener('click',e=>{const b=e.target.closest('button');if(b){go(b.dataset.id);}});
+const qclr=document.getElementById('qclr');
+q.addEventListener('input',()=>{qclr.hidden=!q.value});
+qclr.addEventListener('click',()=>{q.value='';qclr.hidden=true;res.innerHTML='';q.focus()});
 update(true);applyYear();
 // export do Excelu – kluby aktuálně zobrazené (vybrané země + filtr dojezdu)
 function visibleClubs(){const tm=+rMin.value,tk=+rKm.value;
