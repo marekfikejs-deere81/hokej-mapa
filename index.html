@@ -687,6 +687,7 @@ body{font:15px/1.45 var(--body);color:var(--ink);background:var(--ice);display:f
 .qfloat #results{background:#fff;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.18);max-height:50vh;overflow-y:auto}
 .qfloat #results:empty{display:none}
 #map{flex:1;min-height:0}
+.mapbar[hidden]{display:none}
 .mapbar{flex:0 0 auto;padding:8px max(12px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) 12px;background:var(--panel);border-top:1px solid var(--line);display:flex;justify-content:flex-end}
 .qwrap{position:relative}
 .qwrap input{padding-right:34px}
@@ -775,7 +776,7 @@ h2{font:700 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;
   </div>
   <p class="foot">Zdroj: pojdhrathokej.cz, hockeyslovakia.sk, svazy AT a DE (rešerše), weby klubů, zapasy.ceskyhokej.cz (zápasy se aktualizují denně). Dojezd: OSRM (OpenStreetMap), bez dopravy. Stav 2. 11. 2026. Mapa © přispěvatelé OpenStreetMap.</p>
 </aside>
-<div id="mapwrap"><div class="qfloat"><div class="qwrap"><input type="search" id="q" placeholder="Hledat klub nebo město…" autocomplete="off"><button type="button" class="qclr" id="qclr" aria-label="Smazat hledání" hidden>×</button></div><ul id="results"></ul></div><div id="map"></div><div class="mapbar"><button class="xbtn" id="xls" type="button">Export zobrazených klubů do Excelu</button></div></div>
+<div id="mapwrap"><div class="qfloat"><div class="qwrap"><input type="search" id="q" placeholder="Hledat klub nebo město…" autocomplete="off"><button type="button" class="qclr" id="qclr" aria-label="Smazat hledání" hidden>×</button></div><ul id="results"></ul></div><div id="map"></div><div class="mapbar" hidden><button class="xbtn" id="xls" type="button">Export zobrazených klubů do Excelu</button></div></div>
 <script>/* @preserve
  * Leaflet 1.9.4, a JS library for interactive maps. https://leafletjs.com
  * (c) 2010-2023 Vladimir Agafonkin, (c) 2010-2011 CloudMade
