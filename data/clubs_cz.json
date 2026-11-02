@@ -1,0 +1,812 @@
+[
+{
+"id": "60306",
+"n": "HC Skuteč",
+"city": "Skuteč"
+},
+{
+"id": "10401",
+"n": "HC Kobra Praha",
+"city": "Praha"
+},
+{
+"id": "10502",
+"n": "HC Smíchov 1913",
+"city": "Praha 5 - Jinonice"
+},
+{
+"id": "10601",
+"n": "HC Hvězda Praha",
+"city": "Praha"
+},
+{
+"id": "10701",
+"n": "HC Sparta Praha",
+"city": "Praha"
+},
+{
+"id": "11001",
+"n": "HC Slavia Praha",
+"city": "Praha"
+},
+{
+"id": "20202",
+"n": "HC Berounští Medvědi",
+"city": "Beroun 1 - Závodí"
+},
+{
+"id": "20301",
+"n": "Rytíři Kladno",
+"city": "Kladno"
+},
+{
+"id": "20302",
+"n": "Prac. zálohy Kladno",
+"city": "Kladno"
+},
+{
+"id": "20305",
+"n": "HK LEV Slaný",
+"city": "Slaný"
+},
+{
+"id": "20401",
+"n": "SC Retia Kolín",
+"city": "Kolín"
+},
+{
+"id": "20702",
+"n": "HC Benátky n.J.",
+"city": "Benátky nad Jizerou"
+},
+{
+"id": "20704",
+"n": "BK Mladá Boleslav",
+"city": "Mladá Boleslav"
+},
+{
+"id": "20902",
+"n": "Slavoj Vel.Popovice",
+"city": "Velké Popovice"
+},
+{
+"id": "21001",
+"n": "SK Černošice",
+"city": "Černošice"
+},
+{
+"id": "21103",
+"n": "HC Příbram",
+"city": "Příbram"
+},
+{
+"id": "21106",
+"n": "Tatran Sedlčany",
+"city": "Sedlčany"
+},
+{
+"id": "21203",
+"n": "HC Rakovník",
+"city": "Rakovník"
+},
+{
+"id": "30101",
+"n": "BANES Motor České Budějovice",
+"city": "České Budějovice"
+},
+{
+"id": "30201",
+"n": "Slavoj Český Krumlov",
+"city": "Český Krumlov"
+},
+{
+"id": "30507",
+"n": "IHC Králové Písek",
+"city": "Písek"
+},
+{
+"id": "30601",
+"n": "HC Vimperk",
+"city": "Vimperk"
+},
+{
+"id": "30702",
+"n": "HC Strakonice",
+"city": "Strakonice"
+},
+{
+"id": "30801",
+"n": "HC Tábor",
+"city": "Tábor"
+},
+{
+"id": "30803",
+"n": "Loko. Veselí n.Luž.",
+"city": "Veselí nad Lužnicí"
+},
+{
+"id": "30804",
+"n": "Spartak Soběslav",
+"city": "Soběslav"
+},
+{
+"id": "40201",
+"n": "HC Stadion Cheb",
+"city": "Cheb"
+},
+{
+"id": "40303",
+"n": "HC Energie Karlovy Vary",
+"city": "Karlovy Vary"
+},
+{
+"id": "40405",
+"n": "TJ Sušice",
+"city": "Sušice"
+},
+{
+"id": "40410",
+"n": "HC Klatovy",
+"city": "Klatovy"
+},
+{
+"id": "40504",
+"n": "HC ŠKODA PLZEŇ",
+"city": "Plzeň"
+},
+{
+"id": "40802",
+"n": "HC Rokycany z.s.",
+"city": "Rokycany"
+},
+{
+"id": "40901",
+"n": "HC Baník Sokolov",
+"city": "Sokolov"
+},
+{
+"id": "50101",
+"n": "HC Česká Lípa",
+"city": "Česká Lípa"
+},
+{
+"id": "50201",
+"n": "HC Děčín",
+"city": "Děčín"
+},
+{
+"id": "50203",
+"n": "HC TS Varnsdorf",
+"city": "Varnsdorf"
+},
+{
+"id": "50302",
+"n": "Piráti Chomutov",
+"city": "Chomutov"
+},
+{
+"id": "50303",
+"n": "SK Kadaň",
+"city": "Kadaň"
+},
+{
+"id": "50304",
+"n": "HC Tygři Klášterec nad Ohří",
+"city": "Klášterec nad Ohří"
+},
+{
+"id": "50401",
+"n": "TJ HC Jablonec n/N.",
+"city": "Jablonec nad Nisou"
+},
+{
+"id": "50502",
+"n": "Bílí Tygři Liberec",
+"city": "Liberec"
+},
+{
+"id": "50503",
+"n": "HC Frýdlant",
+"city": "Frýdlant"
+},
+{
+"id": "50603",
+"n": "HC Lovosice",
+"city": "Lovosice"
+},
+{
+"id": "50604",
+"n": "HC Roudnice n.L.",
+"city": "Roudnice nad Labem"
+},
+{
+"id": "50701",
+"n": "HC Slovan Louny",
+"city": "Louny"
+},
+{
+"id": "50801",
+"n": "HC Litvínov",
+"city": "Litvínov"
+},
+{
+"id": "50901",
+"n": "HC Draci Bílina",
+"city": "Bílina"
+},
+{
+"id": "51001",
+"n": "Slovan Ústí n.Labem",
+"city": "Ústí nad Labem"
+},
+{
+"id": "60102",
+"n": "BK Havlíčkův Brod",
+"city": "Havlíčkův Brod"
+},
+{
+"id": "60103",
+"n": "HC Chotěboř",
+"city": "Chotěboř"
+},
+{
+"id": "60110",
+"n": "HC Světlá n. Sáz.",
+"city": "Světlá nad Sázavou"
+},
+{
+"id": "60202",
+"n": "SK Třebechovice p.O.",
+"city": "Třebechovice pod Orebem"
+},
+{
+"id": "60204",
+"n": "Stadion Nový Bydžov",
+"city": "Nový Bydžov"
+},
+{
+"id": "60301",
+"n": "HC Hlinsko",
+"city": "Hlinsko"
+},
+{
+"id": "60304",
+"n": "HC Chrudim",
+"city": "Chrudim"
+},
+{
+"id": "60402",
+"n": "Hokejový klub Autocentrum Jičín",
+"city": "Jičín"
+},
+{
+"id": "60502",
+"n": "HC Náchod",
+"city": "Náchod"
+},
+{
+"id": "60505",
+"n": "HC Wikov Hronov",
+"city": "Hronov"
+},
+{
+"id": "60506",
+"n": "Sp.Nové Město n.Met.",
+"city": "Nové Město nad Metují"
+},
+{
+"id": "60602",
+"n": "HC DYNAMO PARDUBICE",
+"city": "Pardubice"
+},
+{
+"id": "60702",
+"n": "HC Opočno",
+"city": "Opočno"
+},
+{
+"id": "60803",
+"n": "Lomnice nad Popelkou",
+"city": "Lomnice nad Popelkou"
+},
+{
+"id": "60901",
+"n": "HC Litomyšl",
+"city": "Litomyšl"
+},
+{
+"id": "60902",
+"n": "Slovan Morav.Třebová",
+"city": "Moravská Třebová"
+},
+{
+"id": "60903",
+"n": "HC Spartak Polička",
+"city": "Polička"
+},
+{
+"id": "61003",
+"n": "HC Trutnov",
+"city": "Trutnov"
+},
+{
+"id": "61101",
+"n": "Loko. Česká Třebová",
+"city": "Česká Třebová"
+},
+{
+"id": "61103",
+"n": "SK Divočáci Žamberk",
+"city": "Žamberk"
+},
+{
+"id": "61104",
+"n": "HC Spartak Choceň",
+"city": "Choceň"
+},
+{
+"id": "61109",
+"n": "TJ Lanškroun",
+"city": "Lanškroun"
+},
+{
+"id": "70104",
+"n": "HC Blansko",
+"city": "Blansko"
+},
+{
+"id": "70202",
+"n": "HC KOMETA BRNO",
+"city": "Brno"
+},
+{
+"id": "70501",
+"n": "Berani Zlín",
+"city": "Zlín"
+},
+{
+"id": "70506",
+"n": "HC Brumov-Bylnice",
+"city": "Brumov-Bylnice"
+},
+{
+"id": "70703",
+"n": "HC Dukla Jihlava",
+"city": "Jihlava"
+},
+{
+"id": "70804",
+"n": "HK Kroměříž",
+"city": "Kroměříž"
+},
+{
+"id": "71001",
+"n": "SK H.Slavia Třebíč",
+"city": "Třebíč"
+},
+{
+"id": "71004",
+"n": "Náměšť nad Oslavou",
+"city": "Náměšť nad Oslavou"
+},
+{
+"id": "71102",
+"n": "HC Uherské Hradiště",
+"city": "Uherské Hradiště"
+},
+{
+"id": "71103",
+"n": "HC SPARTAK Uherský Brod",
+"city": "Uherský Brod"
+},
+{
+"id": "71104",
+"n": "HOKEJ Uherský Ostroh",
+"city": "Uherský Ostroh"
+},
+{
+"id": "71301",
+"n": "HC Orli Znojmo",
+"city": "Znojmo"
+},
+{
+"id": "71403",
+"n": "HC Sp. Velká Bíteš",
+"city": "Velká Bíteš"
+},
+{
+"id": "71406",
+"n": "HHK Velké Meziříčí",
+"city": "Velké Meziříčí"
+},
+{
+"id": "80102",
+"n": "TJ Horní Benešov",
+"city": "Horní Benešov"
+},
+{
+"id": "80201",
+"n": "HC Frýdek-Místek",
+"city": "Frýdek-Místek"
+},
+{
+"id": "80203",
+"n": "HC Oceláři Třinec",
+"city": "Třinec"
+},
+{
+"id": "80402",
+"n": "HC Kopřivnice",
+"city": "Kopřivnice"
+},
+{
+"id": "80403",
+"n": "HK Nový Jičín",
+"city": "Nový Jičín"
+},
+{
+"id": "80406",
+"n": "HC Studénka",
+"city": "Studénka"
+},
+{
+"id": "80502",
+"n": "HC Olomouc",
+"city": "Olomouc"
+},
+{
+"id": "80504",
+"n": "TJ HC Šternberk",
+"city": "Šternberk"
+},
+{
+"id": "80507",
+"n": "HC Uničov",
+"city": "Uničov"
+},
+{
+"id": "80702",
+"n": "HC VÍTKOVICE RIDERA",
+"city": "Ostrava"
+},
+{
+"id": "80903",
+"n": "HK MD Šumperk",
+"city": "Šumperk"
+},
+{
+"id": "81001",
+"n": "HC Rožnov p. R. Černí Vlci",
+"city": "Rožnov pod Radhoštěm"
+},
+{
+"id": "81002",
+"n": "HC Bobři Val. Meziříčí",
+"city": "Valašské Meziříčí"
+},
+{
+"id": "50606",
+"n": "HC Stadion Litoměřice",
+"city": "Litoměřice"
+},
+{
+"id": "70221",
+"n": "HCM Warriors Brno",
+"city": "Brno"
+},
+{
+"id": "10905",
+"n": "HC Letci Letňany",
+"city": "Praha 9 - Letňany"
+},
+{
+"id": "40208",
+"n": "HC Mariánské Lázně",
+"city": "Mariánské Lázně"
+},
+{
+"id": "20808",
+"n": "HC Nymburský Lev, z.s.",
+"city": "Nymburk"
+},
+{
+"id": "61010",
+"n": "HC Dvůr Králové n.L.",
+"city": "Dvůr Králové nad Labem"
+},
+{
+"id": "80608",
+"n": "HC AZ Havířov",
+"city": "Havířov"
+},
+{
+"id": "90071",
+"n": "HC Rebel Město Nejdek",
+"city": "Nejdek"
+},
+{
+"id": "80711",
+"n": "HC RT TORAX PORUBA",
+"city": "Ostrava-Poruba"
+},
+{
+"id": "70320",
+"n": "HC Zastávka u Brna",
+"city": "Rosice"
+},
+{
+"id": "20608",
+"n": "HK Kralupy n.Vltavou",
+"city": "Kralupy nad Vltavou"
+},
+{
+"id": "90134",
+"n": "HC Turnov 1931",
+"city": "Turnov"
+},
+{
+"id": "80809",
+"n": "HC ZUBR Přerov",
+"city": "Přerov I-Město"
+},
+{
+"id": "20610",
+"n": "HC Junior Mělník",
+"city": "Mělník"
+},
+{
+"id": "70603",
+"n": "SHKM Hodonín",
+"city": "Hodonín"
+},
+{
+"id": "41008",
+"n": "HC Tachov",
+"city": "Tachov"
+},
+{
+"id": "80309",
+"n": "HC BOSPOR Bohumín",
+"city": "Bohumín"
+},
+{
+"id": "60709",
+"n": "HC MĚSTO RYCHNOV NAD KNĚŽNOU",
+"city": "Rychnov nad Kněžnou"
+},
+{
+"id": "40708",
+"n": "HC Meteor Třemošná",
+"city": "Třemošná"
+},
+{
+"id": "20509",
+"n": "HC Ledeč nad Sázavou",
+"city": "Ledeč nad Sázavou"
+},
+{
+"id": "71424",
+"n": "SKLH Žďár n. Sázavou",
+"city": "Žďár nad Sázavou"
+},
+{
+"id": "70119",
+"n": "HC Boskovice",
+"city": "Boskovice"
+},
+{
+"id": "60410",
+"n": "HC Nová Paka, z.s.",
+"city": "Nová Paka"
+},
+{
+"id": "81008",
+"n": "Valašský hokejový klub",
+"city": "Vsetín"
+},
+{
+"id": "71211",
+"n": "MBK Vyškov",
+"city": "Vyškov"
+},
+{
+"id": "40108",
+"n": "HC Domažlice",
+"city": "Domažlice"
+},
+{
+"id": "20803",
+"n": "HC Poděbrady",
+"city": "Poděbrady"
+},
+{
+"id": "30506",
+"n": "HC Milevsko 1934",
+"city": "Milevsko"
+},
+{
+"id": "40302",
+"n": "HC Čerti Ostrov",
+"city": "Ostrov nad Ohří"
+},
+{
+"id": "60510",
+"n": "HCM Jaroměř",
+"city": "Jaroměř"
+},
+{
+"id": "20511",
+"n": "SK Sršni Kutná Hora",
+"city": "Kutná Hora"
+},
+{
+"id": "61013",
+"n": "HC Stadion Vrchlabí",
+"city": "Vrchlabí"
+},
+{
+"id": "80105",
+"n": "HK Krnov mládež",
+"city": "Krnov"
+},
+{
+"id": "40522",
+"n": "HC Pilsen Wolves",
+"city": "Plzeň"
+},
+{
+"id": "60208",
+"n": "Mountfield HK, a.s.",
+"city": "Hradec Králové"
+},
+{
+"id": "30411",
+"n": "HC Lední medvědi Pelhřimov",
+"city": "Pelhřimov"
+},
+{
+"id": "20612",
+"n": "HC Buldoci Neratovice",
+"city": "Neratovice"
+},
+{
+"id": "20109",
+"n": "HC Rytíři Vlašim",
+"city": "Vlašim"
+},
+{
+"id": "20112",
+"n": "HC Lev Benešov",
+"city": "Benešov"
+},
+{
+"id": "30318",
+"n": "HC Střelci Jindřichův Hradec",
+"city": "Jindřichův Hradec"
+},
+{
+"id": "50802",
+"n": "MOSTEČTÍ LVI",
+"city": "Most"
+},
+{
+"id": "71425",
+"n": "BK Zubři Bystřice n. Pernštejnem",
+"city": "Bystřice nad Pernštejnem"
+},
+{
+"id": "80603",
+"n": "HC Slezan Opava s.r.o.",
+"city": "Opava 1"
+},
+{
+"id": "30407",
+"n": "HC Pumy Agrostroj Pelhřimov",
+"city": "Pelhřimov"
+},
+{
+"id": "70122",
+"n": "SKMB Boskovice z.s.",
+"city": "Boskovice"
+},
+{
+"id": "30102",
+"n": "HC MAD BULL",
+"city": "České Budějovice"
+},
+{
+"id": "60302",
+"n": "Hokejový klub Čáslav",
+"city": "Čáslav"
+},
+{
+"id": "20216",
+"n": "HC Spartak Žebrák",
+"city": "Hořovice"
+},
+{
+"id": "70908",
+"n": "SK Prostějov 1913",
+"city": "Prostějov"
+},
+{
+"id": "20113",
+"n": "HC Com-Sys Říčany",
+"city": "Říčany"
+},
+{
+"id": "30319",
+"n": "Vajgar Jindřichův Hradec",
+"city": "Jindřichův Hradec"
+},
+{
+"id": "80311",
+"n": "HC Vlci Český Těšín",
+"city": "Český Těšín"
+},
+{
+"id": "80313",
+"n": "MSK Orlová",
+"city": "Orlová-Lutyně"
+},
+{
+"id": "80108",
+"n": "HC Bruntál z.s.",
+"city": "Bruntál"
+},
+{
+"id": "50905",
+"n": "HC Teplice",
+"city": "Teplice"
+},
+{
+"id": "71002",
+"n": "HC Žihadla Moravské Budějovice - mládež",
+"city": "Moravské Budějovice"
+},
+{
+"id": "70322",
+"n": "HC Mystery Kuřim z.s.",
+"city": "Kuřim"
+},
+{
+"id": "70504",
+"n": "Tigers Zlín",
+"city": "Zlín"
+},
+{
+"id": "80315",
+"n": "HK Karviná",
+"city": "Karviná"
+},
+{
+"id": "70235",
+"n": "HC Scorpions Brno",
+"city": "Brno"
+},
+{
+"id": "70323",
+"n": "HC Tygři Moutnice",
+"city": "Moutnice"
+},
+{
+"id": "70717",
+"n": "Rytíři z Telče",
+"city": "Telč"
+},
+{
+"id": "30412",
+"n": "HC Humpolec, z.s.",
+"city": "Humpolec"
+},
+{
+"id": "70406",
+"n": "FOSFA HC Lvi Břeclav mládež z.s.",
+"city": "Břeclav"
+},
+{
+"id": "51006",
+"n": "HC DYNAMO POVRLY",
+"city": "Povrly"
+}
+]
